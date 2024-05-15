@@ -1,18 +1,9 @@
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
+  max-width: 1200px;
+  min-width: 800px;
+  background-color: rgb(253, 243, 241);
+  border: 6px solid rgb(255, 225, 220);
+  border-radius: 3rem;
+  margin: 5rem auto;
   padding: 2rem;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
 }

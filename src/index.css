@@ -36,7 +36,6 @@ img {
   animation: rotate 7s linear infinite; /* 회전 애니메이션 적용 */
 }
 
-
 h1 {
   font-size: 3.2em;
   color: white;
@@ -58,12 +57,21 @@ h2{
   color: rgb(249, 125, 099);
 }
 
-
 h4{
   margin: 0 1rem;
   color: #f6a48d;
   font-size: 1.1rem;
   font-weight: 700;
+}
+
+h3{
+  margin: 0;
+  color: #ff3700;
+  font-weight: bolder;
+}
+
+span{
+  color: #ff5020;
 }
 
 input{

@@ -103,6 +103,7 @@ button{
   font-weight: bold;
   background-color: white;
   border: 1px solid rgb(255, 103, 73);
+  cursor: pointer;
 }
 
 .complete-btn {
@@ -111,6 +112,7 @@ button{
   font-weight: bold;
   background-color: #f6a48d;
   border: 1px solid #f6a48d;
+  cursor: pointer;
 }
 
 .incomplete-btn {
@@ -119,4 +121,5 @@ button{
   font-weight: bold;
   background-color: rgb(255, 103, 73);
   border: 1px solid rgb(255, 103, 73);
+  cursor: pointer;
 }

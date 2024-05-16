@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import './App.css';
-import { addGoal, removeGoal, changeGoal } from './components/Button';
+import Button from './components/Button';
 
 function App() {
   // 처음 세팅
@@ -18,9 +18,7 @@ function App() {
   const [title, setTitle] = useState(""); // Todo 제목 입력 상태
   const [content, setContent] = useState(""); // Todo 내용 입력 상태
 
-  // return 스타일 적용
-
-  //ul css
+  // ul css
   const goalsStyle = {
     display: 'grid',
     gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', // 자동으로 그리드 컬럼 생성, 최소 너비는 200px, 공간이 허락하는 한 최대로 늘어남
@@ -28,7 +26,7 @@ function App() {
     padding: '1rem'
   };
 
-  //li css
+  // li css
   const goalStyle = {
     backgroundColor: 'white',
     border: '1px solid rgb(255,157,138)',
@@ -40,7 +38,7 @@ function App() {
     gap: '10px'
   };
 
-  //li btn css
+  // li btn css
   const buttonContainerStyle = {
     display: 'flex',
     alignItems: 'center',
@@ -48,14 +46,28 @@ function App() {
     marginTop: '10px'
   };
 
+  // 새로운 Todo를 추가하는 함수
+  const addGoal = (e) => {
+    e.preventDefault(); // 기본 이벤트 방지
+    // 제목 또는 내용이 빈 경우 알림 표시 후 종료
+    if (!title || !content) {
+      alert("제목과 내용 모두 입력하세요.");
+      return;
+    }
+    // Todo 목록을 업데이트하고 입력 필드를 초기화
+    setGoals([...goals, { id: Date.now(), title, content, complete: false }]);
+    setTitle("");
+    setContent("");
+  };
+
   return (
     <>
       <header>
         <h1>ToDo List</h1>
-        <img src='src/img/flower2.png'></img>
+        <img src='src/img/flower2.png' alt='flower' />
       </header>
-       {/* Todo 추가를 위한 폼 */}
-      <form onSubmit={(e) => addGoal(e, title, content, setGoals, setTitle, setContent, goals)}>
+      {/* Todo 추가를 위한 폼 */}
+      <form onSubmit={addGoal}>
         <h4>제목</h4>
         <input
           type='text'
@@ -72,8 +84,8 @@ function App() {
         {/* Todo 추가 버튼 */}
         <button type='submit' className='addbtn'>추가하기</button>
       </form>
-       {/* 진행 중인 Todo 목록 */}
-      <h2>Working!!!</h2>
+      {/* 진행 중인 Todo 목록 */}
+      <h2>Working!!!🔥</h2>
       <ul style={goalsStyle}>
         {goals.map((goal) => (
           <li key={goal.id} style={goalStyle}>
@@ -81,11 +93,14 @@ function App() {
             <span>{goal.content}</span>
             {/* Todo 삭제 및 완료 버튼 */}
             <div style={buttonContainerStyle}>
-              <button onClick={() => removeGoal(goal.id, false, setDoneGoals, doneGoals, setGoals, goals)} className='deletebtn'>삭제하기</button>
-              <button onClick={() => changeGoal(goal.id, false, setDoneGoals, doneGoals, setGoals, goals)}
-                      className={goal.complete ? 'incomplete-btn' : 'complete-btn'  }>
-                {goal.complete ? "취소" : "완료"}
-              </button>
+              <Button 
+                goal={goal} 
+                goals={goals} 
+                setGoals={setGoals} 
+                doneGoals={doneGoals} 
+                setDoneGoals={setDoneGoals} 
+                isDoneList={false} 
+              />
             </div>
           </li>
         ))}
@@ -94,7 +109,7 @@ function App() {
         <h3></h3>
       </div>
       {/* 완료된 Todo 목록 */}
-      <h2>Done..!</h2>
+      <h2>Done..!👏🏻</h2>
       <ul style={goalsStyle}>
         {doneGoals.map((goal) => (
           <li key={goal.id} style={goalStyle}>
@@ -102,11 +117,14 @@ function App() {
             <span>{goal.content}</span>
             {/* 완료된 Todo 삭제 및 완료 버튼 */}
             <div style={buttonContainerStyle}>
-              <button onClick={() => removeGoal(goal.id, true, setDoneGoals, doneGoals, setGoals, goals)} className='deletebtn'>삭제하기</button>
-              <button onClick={() => changeGoal(goal.id, true, setDoneGoals, doneGoals, setGoals, goals)}
-                      className={goal.complete ?  'incomplete-btn' : 'complete-btn'}>
-                {goal.complete ? "취소" : "완료"}
-              </button>
+              <Button 
+                goal={goal} 
+                goals={goals} 
+                setGoals={setGoals} 
+                doneGoals={doneGoals} 
+                setDoneGoals={setDoneGoals} 
+                isDoneList={true} 
+              />
             </div>
           </li>
         ))}

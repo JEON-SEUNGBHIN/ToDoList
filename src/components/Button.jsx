@@ -23,7 +23,7 @@ function removeGoal(id, isDoneList, setDoneGoals, doneGoals, setGoals, goals) {
 }
 
 // Todo의 완료 상태를 변경하는 함수
-function completeGoal(id, isDoneList, setDoneGoals, doneGoals, setGoals, goals) {
+function changeGoal(id, isDoneList, setDoneGoals, doneGoals, setGoals, goals) {
   // 완료된 목록인지에 따라 해당 Todo를 찾아 상태 변경
   const goal = isDoneList ? doneGoals.find((goal) => goal.id === id) : goals.find((goal) => goal.id === id);
   const updatedGoals = isDoneList ? doneGoals.filter((goal) => goal.id !== id) : goals.filter((goal) => goal.id !== id);
@@ -38,4 +38,4 @@ function completeGoal(id, isDoneList, setDoneGoals, doneGoals, setGoals, goals) 
   }
 }
 
-export { addGoal, removeGoal, completeGoal }; // 다른 파일에서 이 함수들을 사용할 수 있도록 내보내기
+export { addGoal, removeGoal, changeGoal }; // 다른 파일에서 이 함수들을 사용할 수 있도록 내보내기

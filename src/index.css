@@ -14,6 +14,29 @@ body {
   display: flex;
 }
 
+header{
+  height: 10rem;
+  display: flex;
+  align-items: center;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+img {
+  width: 10%;
+  height: 50%;
+  margin-left: 2rem;
+  animation: rotate 7s linear infinite; /* 회전 애니메이션 적용 */
+}
+
+
 h1 {
   font-size: 3.2em;
   color: white;
@@ -51,15 +74,41 @@ input{
 }
 
 .addbtn{
-  width: 7rem;
   margin-left: auto;
-  margin-right: 1rem;
   padding: 0.5rem;
   background-color: rgb(255, 174, 158);
-  border: 1px solid #fdf5e4;
+  border: 1px solid rgb(255, 174, 158);
   border-radius: 0.5rem;
   color: white;
   font-size: 1rem;
   font-weight: bold;
   cursor: pointer;
+}
+
+button{
+  flex: 1;
+}
+
+.deletebtn{
+  padding: 0.2rem;
+  color: rgb(255, 103, 73);
+  font-weight: bold;
+  background-color: white;
+  border: 1px solid rgb(255, 103, 73);
+}
+
+.complete-btn {
+  padding: 0.2rem;
+  color: white;
+  font-weight: bold;
+  background-color: #f6a48d;
+  border: 1px solid #f6a48d;
+}
+
+.incomplete-btn {
+  padding: 0.2rem;
+  color: white;
+  font-weight: bold;
+  background-color: rgb(255, 103, 73);
+  border: 1px solid rgb(255, 103, 73);
 }

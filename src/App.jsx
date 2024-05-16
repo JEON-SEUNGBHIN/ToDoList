@@ -1,20 +1,26 @@
 import { useState } from 'react';
 import './App.css';
-import { addGoal, removeGoal, completeGoal } from './components/Button';
+import { addGoal, removeGoal, changeGoal } from './components/Button';
 
 function App() {
   // 처음 세팅
-  const initialState = [
+  const initialState1 = [
     { id: 0, title: "리액트 공부하기", content: "리액트 기초 공부하기", complete: false }
   ];
 
+  const initialState2 = [
+    { id: 1, title: "리액트 공부하기", content: "리액트 기초 공부하기", complete: true }
+  ];
+
   // Todo 초기값
-  const [goals, setGoals] = useState(initialState); // 현재의 Todo 목록
-  const [doneGoals, setDoneGoals] = useState([]); // 완료된 Todo 목록
+  const [goals, setGoals] = useState(initialState1); // 현재의 Todo 목록
+  const [doneGoals, setDoneGoals] = useState(initialState2); // 완료된 Todo 목록
   const [title, setTitle] = useState(""); // Todo 제목 입력 상태
   const [content, setContent] = useState(""); // Todo 내용 입력 상태
 
   // return 스타일 적용
+
+  //ul css
   const goalsStyle = {
     display: 'grid',
     gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', // 자동으로 그리드 컬럼 생성, 최소 너비는 200px, 공간이 허락하는 한 최대로 늘어남
@@ -22,6 +28,7 @@ function App() {
     padding: '1rem'
   };
 
+  //li css
   const goalStyle = {
     backgroundColor: 'white',
     border: '1px solid rgb(255,157,138)',
@@ -33,6 +40,7 @@ function App() {
     gap: '10px'
   };
 
+  //li btn css
   const buttonContainerStyle = {
     display: 'flex',
     alignItems: 'center',
@@ -44,6 +52,7 @@ function App() {
     <>
       <header>
         <h1>ToDo List</h1>
+        <img src='src/img/flower2.png'></img>
       </header>
        {/* Todo 추가를 위한 폼 */}
       <form onSubmit={(e) => addGoal(e, title, content, setGoals, setTitle, setContent, goals)}>
@@ -72,8 +81,9 @@ function App() {
             <span>{goal.content}</span>
             {/* Todo 삭제 및 완료 버튼 */}
             <div style={buttonContainerStyle}>
-              <button onClick={() => removeGoal(goal.id, false, setDoneGoals, doneGoals, setGoals, goals)}>삭제하기</button>
-              <button onClick={() => completeGoal(goal.id, false, setDoneGoals, doneGoals, setGoals, goals)}>
+              <button onClick={() => removeGoal(goal.id, false, setDoneGoals, doneGoals, setGoals, goals)} className='deletebtn'>삭제하기</button>
+              <button onClick={() => changeGoal(goal.id, false, setDoneGoals, doneGoals, setGoals, goals)}
+                      className={goal.complete ? 'incomplete-btn' : 'complete-btn'  }>
                 {goal.complete ? "취소" : "완료"}
               </button>
             </div>
@@ -92,8 +102,9 @@ function App() {
             <span>{goal.content}</span>
             {/* 완료된 Todo 삭제 및 완료 버튼 */}
             <div style={buttonContainerStyle}>
-              <button onClick={() => removeGoal(goal.id, true, setDoneGoals, doneGoals, setGoals, goals)}>삭제하기</button>
-              <button onClick={() => completeGoal(goal.id, true, setDoneGoals, doneGoals, setGoals, goals)}>
+              <button onClick={() => removeGoal(goal.id, true, setDoneGoals, doneGoals, setGoals, goals)} className='deletebtn'>삭제하기</button>
+              <button onClick={() => changeGoal(goal.id, true, setDoneGoals, doneGoals, setGoals, goals)}
+                      className={goal.complete ?  'incomplete-btn' : 'complete-btn'}>
                 {goal.complete ? "취소" : "완료"}
               </button>
             </div>
